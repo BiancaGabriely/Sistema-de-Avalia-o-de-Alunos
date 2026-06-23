@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cadastro de alunos</h1>
+
+    <p>Nesta aba será realizado o cadastro do aluno, insira os dados abaixo:</p>
+
+    <label for="">Nome Completo:</label>
+    <input type="text" placeholder="Nome completo...">
+    <br>
+
+    <label for="">Turma:</label>
+    <select name="" id="turmas">
+        <option value="" disabled selected>Informe sua Turma</option>
+        <option value="">1° MATUTINO</option>
+        <option value="">1° VESPERTINO</option>
+        <option value="">2° MATUTINO</option>
+        <option value="">2° VESPERTINO</option>
+        <option value="">3° MATUTINO</option>
+        <option value="">3° VESPERTINO</option>
+
+    </select>
+    <p>Escolha o tipo referente a sua nota:</p>
+    <select name="" id="opcoes">
+        <option value="" disabled selected>Informe a opção</option>
+        <option>Avaliação</option>
+        <option value="">Bimestre</option>
+    </select>
+
+    <br>
+
+    <label for="">Nota 1:</label>
+    <input type="number">
+
+    <label for="">Nota 2:</label>
+    <input type="number">
+
+    <br>
+
+    <p>Informe sua frequência na disciplina:</p>
+    <label for="porcentagem">Frequência:</label>
+    <input type="number" name="" id="porcentagem" min="0" max="100" step="1" placeholder="0%">
+    <br>
+    <button id="Enviar">Cadastrar</button>
+</body>
+</html>
