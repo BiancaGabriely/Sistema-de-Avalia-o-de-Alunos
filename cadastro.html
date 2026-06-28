@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cadastro de Alunos</title>
 </head>
 <body>
     <h1>Cadastro de alunos</h1>
@@ -11,18 +11,18 @@
     <p>Nesta aba será realizado o cadastro do aluno, insira os dados abaixo:</p>
 
     <label for="">Nome Completo:</label>
-    <input type="text" placeholder="Nome completo...">
+    <input type="text" placeholder="Nome completo..." id="nome">
     <br>
 
     <label for="">Turma:</label>
     <select name="" id="turmas">
         <option value="" disabled selected>Informe sua Turma</option>
-        <option value="">1° MATUTINO</option>
-        <option value="">1° VESPERTINO</option>
-        <option value="">2° MATUTINO</option>
-        <option value="">2° VESPERTINO</option>
-        <option value="">3° MATUTINO</option>
-        <option value="">3° VESPERTINO</option>
+        <option value="1M">1° MATUTINO</option>
+        <option value="1V">1° VESPERTINO</option>
+        <option value="2M">2° MATUTINO</option>
+        <option value="2V">2° VESPERTINO</option>
+        <option value="3M">3° MATUTINO</option>
+        <option value="3V">3° VESPERTINO</option>
 
     </select>
     <p>Escolha o tipo referente a sua nota:</p>
@@ -34,11 +34,11 @@
 
     <br>
 
-    <label for="">Nota 1:</label>
-    <input type="number">
+    <label for="" >Nota 1:</label>
+    <input type="number" id="nota1">
 
-    <label for="">Nota 2:</label>
-    <input type="number">
+    <label for="" >Nota 2:</label>
+    <input type="number" id="nota2">
 
     <br>
 
@@ -46,6 +46,10 @@
     <label for="porcentagem">Frequência:</label>
     <input type="number" name="" id="porcentagem" min="0" max="100" step="1" placeholder="0%">
     <br>
-    <button id="Enviar">Cadastrar</button>
+    <button id="Enviar" onclick="cadastrar()">Cadastrar</button>
+
+    <div id="resultado"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
