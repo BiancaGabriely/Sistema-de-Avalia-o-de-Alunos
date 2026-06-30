@@ -28,6 +28,7 @@ function cadastrar(){
     };
 
     alunos.push(aluno);
+    localStorage.setItem("alunos", JSON.stringify(alunos));
     alert(`Aluno cadastrado com sucesso!
     Matrícula do aluno cadastrado: ${matricula}` );
 
