@@ -51,9 +51,19 @@ function salvar(){
         return;
     }
 
-      
+    let novaTurma = document.querySelector("#novaTurma").value;
+
+    if(novaTurma !== aluno.turma){
+        let novamatricula = gerarMatricula(novaTurma);
+
+        aluno.matricula = novamatricula;
+
+       document.querySelector("#novaMatricula").textContent =
+        `Nova matrícula: ${novamatricula}`; 
+    }
+
     aluno.nome = document.querySelector("#novoNome").value;
-    aluno.turma = document.querySelector("#novaTurma").value;
+    aluno.turma = novaTurma;
     aluno.nota1 = Number(document.querySelector("#novaNota1").value);
     aluno.nota2 = Number(document.querySelector("#novaNota2").value);
 
@@ -61,5 +71,32 @@ function salvar(){
 
     alert("Dados salvos com sucesso!");
 
+}
+function gerarMatricula(turma){
+   
+  let alunosturma = alunos.filter(aluno =>  aluno.turma === turma);
+
+    if(alunosturma.length === 0){
+
+        const inicio = {
+            "1M": 1000,
+            "2M": 2000,
+            "3M": 3000,
+            "1V": 4000,
+            "2V": 5000,
+            "3V": 6000  
+        };
+
+        return turma + inicio[turma];
+    }
+
+    let maior = Math.max(
+        ...alunosturma.map(aluno =>
+            Number(aluno.matricula.replace(turma,""))
+        )
+    );
+
+    return turma + (maior + 1);
+    
 }
 

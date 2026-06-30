@@ -39,21 +39,30 @@ function cadastrar(){
     });
     
 }
-
-let contadores = {
-    "1M": 1000,
-    "2M": 2000,
-    "3M": 3000,
-    "1V": 4000,
-    "2V": 5000,
-    "3V": 6000
-};
-
 function gerarMatricula(turma){
    
-    let matricula = turma + contadores[turma];
-    contadores[turma]++;
+    let alunosturma = alunos.filter(aluno =>  aluno.turma === turma);
 
-    return turma + contadores[turma];
+    if(alunosturma.length === 0){
+
+        const inicio = {
+            "1M": 1000,
+            "2M": 2000,
+            "3M": 3000,
+            "1V": 4000,
+            "2V": 5000,
+            "3V": 6000  
+        };
+
+        return turma + inicio[turma];
+    }
+
+    let maior = Math.max(
+        ...alunosturma.map(aluno =>
+            Number(aluno.matricula.replace(turma,""))
+        )
+    );
+
+    return turma + (maior + 1);
     
 }
