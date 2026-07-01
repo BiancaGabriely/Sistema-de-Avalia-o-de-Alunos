@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Sege UI', Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #e8f1fb 0%, #cfe2f7 100%);
+    min-height: 100vh;
+    color:#1b2a4a;
+    
+}
+header{
+    background: #1b2a4a;
+    color: white;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(20, 50, 90, 0.15);
+}
+p{
+    color:#1b2a4a; 
+    font-size: 1rem;
+    margin: 16px 0 24px;
+
+}
+main{
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px 36px;
+  margin: 40px auto;
+  max-width: 520px;
+  box-shadow: 0 20px 50px rgba(20, 50, 90, 0.15);
+}
+.linha{
+    display: flex;
+    gap: 20px;
+}
+label {
+  display: block;
+  color: #1b2a4a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  margin-top: 18px;
+}
+label:first-of-type {
+  margin-top: 0;
+}
+input[type="text"],
+input[type="number"],
+input,
+select {
+  width: 100%;
+  background: #f1f5fb;
+  border: 1px solid #d3e2f5;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  color: #1b2a4a;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+input::placeholder {
+  color: #9fb3cf;
+}
+input::placeholder {
+  color: #9fb3cf;
+}
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%231f5fa8' stroke-width='2' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+button,
+button[type="submit"] {
+  background: linear-gradient(180deg, #1b2a4a 0%, #273e6e 100%);
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 28px;
+  box-shadow: 0 6px 16px rgba(31, 95, 168, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+ 
+
+ 
