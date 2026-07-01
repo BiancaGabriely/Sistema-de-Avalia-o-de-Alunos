@@ -1,6 +1,10 @@
 
 let alunos = JSON.parse(localStorage.getItem("alunos")) || [];
+alunos.forEach(aluno => atualizar(aluno));
+
+localStorage.setItem("alunos", JSON.stringify(alunos));
 document.querySelector("#exibir").addEventListener("click", exibir);
+
 
 function exibir(){
     let matricula = document.querySelector("#matricula").value;
@@ -13,11 +17,17 @@ function exibir(){
         return;
     }
 
-    document.querySelector("#resultado").textContent = `Aluno: ${aluno.nome}`;
+    document.querySelector("#resultado").innerHTML = `
+    Aluno:${aluno.nome}<br>
+    Turma:${aluno.turma}<br>
+    Média:${aluno.media.toFixed(2)}<br>
+    Situação: ${aluno.situacao}
+    `;
+
+    mostrarEstatisticas(aluno.turma);
 
     document.querySelector("#botoes").innerHTML = `
         <button onclick="editar()">Editar</button>
-        <button onclick="calcular()">Calcular Média</button>
     `;
     console.log(aluno);
 
@@ -67,8 +77,11 @@ function salvar(){
     aluno.nota1 = Number(document.querySelector("#novaNota1").value);
     aluno.nota2 = Number(document.querySelector("#novaNota2").value);
 
+    atualizar(aluno);
+    mostrarEstatisticas(aluno.turma);
     localStorage.setItem("alunos", JSON.stringify(alunos));
 
+    exibir();
     alert("Dados salvos com sucesso!");
 
 }
@@ -98,5 +111,50 @@ function gerarMatricula(turma){
 
     return turma + (maior + 1);
     
+}
+function atualizar(aluno){
+    aluno.media = (aluno.nota1 + aluno.nota2) / 2;
+    
+    //calcula a situação
+    console.log(alunos);
+    if(aluno.media >= 60 ){
+        aluno.situacao = "Aprovado!";
+    }else if(aluno.media >= 50){
+        aluno.situacao = "Em Recuperação.";
+    }else{
+        aluno.situacao = "Reprovado.";
+    }
+}
+function estatisticas(turma){
+    let alunosturma = alunos.filter(aluno => aluno.turma === turma);
+
+    if(alunosturma.length === 0){
+        return null;
+    }
+
+    let medias = alunosturma.map(aluno => aluno.media);
+
+    let soma = medias.reduce((total, media) => total + media, 0);
+
+    return{
+        mediaTurma: soma / medias.length,
+        maiorMedia: Math.max(...medias),
+        menorMedia: Math.min(...medias)
+    };
+}
+function mostrarEstatisticas(turma){
+    let dados = estatisticas(turma);
+
+    if(!dados){
+        return;
+    }
+
+    document.querySelector("#estatisticas").innerHTML = `
+        <h3> Estatísticas da Turma </h3>
+
+        Média da Turma: ${dados.mediaTurma.toFixed(2)} <br>
+        Maior Média: ${dados.maiorMedia.toFixed(2)} <br>
+        Menor Média: ${dados.menorMedia.toFixed(2)} 
+    `;
 }
 
