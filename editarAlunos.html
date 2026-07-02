@@ -3,44 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edição e Situação de Alunos</title>
+    <link rel="stylesheet" href="editar.css">
 </head>
 <body>
-    <h1>Editar Aluno</h1>
+    <header>
+        <h1>Situação do Aluno</h1>
+    </header>
 
-    <label for="matricula">Informe a Matrícula do aluno que deseja editar:</label>
-    <input type="text" id="matricula">
-    <button id="exibir">Enviar</button>
-
-    
-    <p id="resultado"></p>
-
-    <div id="botoes"></div>
-
-    <div id="formEditar" style="display:none;">
-        <label for="nome">Nome:</label>
-        <input type="text" id="novoNome">
-        <label for="turma">Turma</label>
-        <select name="" id="novaTurma">
-            <option value="" disabled selected>Informe sua Turma</option>
-            <option value="1M">1° MATUTINO</option>
-            <option value="1V">1° VESPERTINO</option>
-            <option value="2M">2° MATUTINO</option>
-            <option value="2V">2° VESPERTINO</option>
-            <option value="3M">3° MATUTINO</option>
-            <option value="3V">3° VESPERTINO</option>
-        </select>
-        <label for="nota1">Nota 1:</label>
-        <input type="number" id="novaNota1">
-        <label for="nota2">Nota 2:</label>
-        <input type="number" id="novaNota2">
-
-        <button onclick="salvar()">Salvar</button>
+    <main>
+        <div id="container">
+            <label for="matricula">Informe a Matrícula do aluno que deseja editar ou visualizar:</label>
+            <input type="text" id="matricula">
+            <button id="exibir">Enviar</button>
         
-        <p id="novaMatricula"></p>
+            <p id="resultado"></p>
+            <div id="botoes"></div>
+        </div>
         
-    </div>
-    <div id="estatisticas"></div>
+        <div id="formEditar" style="display:none;">
+            <label for="nome">Nome:</label>
+            <input type="text" id="novoNome">
+            <label for="turma">Turma</label>
+            <select name="" id="novaTurma">
+                <option value="" disabled selected>Informe sua Turma</option>
+                <option value="1M">1° MATUTINO</option>
+                <option value="1V">1° VESPERTINO</option>
+                <option value="2M">2° MATUTINO</option>
+                <option value="2V">2° VESPERTINO</option>
+                <option value="3M">3° MATUTINO</option>
+                <option value="3V">3° VESPERTINO</option>
+            </select>
+            <label for="nota1">Nota 1:</label>
+            <input type="number" id="novaNota1">
+            <label for="nota2">Nota 2:</label>
+            <input type="number" id="novaNota2">
+            <button onclick="salvar()">Salvar</button>
+        
+            <p id="novaMatricula"></p>
+        
+        </div>
+        <div id="estatisticas"></div>
+    </main>
     <script src="editar.js"></script>
 
     

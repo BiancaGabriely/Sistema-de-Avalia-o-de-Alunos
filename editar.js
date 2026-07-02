@@ -18,10 +18,14 @@ function exibir(){
     }
 
     document.querySelector("#resultado").innerHTML = `
-    Aluno:${aluno.nome}<br>
-    Turma:${aluno.turma}<br>
-    Média:${aluno.media.toFixed(2)}<br>
-    Situação: ${aluno.situacao}
+    <div class="resultado">
+        <p id="titulo"><strong>Situação do aluno</strong></p><br>
+        <strong>Aluno:</strong>${aluno.nome}<br>
+        <strong>Turma:</strong>${aluno.turma}<br>
+        <strong>Média:</strong>${aluno.media.toFixed(2)}<br>
+        <strong>Situação:</strong> ${aluno.situacao}
+    </div>
+
     `;
 
     mostrarEstatisticas(aluno.turma);
@@ -150,11 +154,12 @@ function mostrarEstatisticas(turma){
     }
 
     document.querySelector("#estatisticas").innerHTML = `
+        
         <h3> Estatísticas da Turma </h3>
 
-        Média da Turma: ${dados.mediaTurma.toFixed(2)} <br>
-        Maior Média: ${dados.maiorMedia.toFixed(2)} <br>
-        Menor Média: ${dados.menorMedia.toFixed(2)} 
+        <strong>Média da Turma:</strong> ${dados.mediaTurma.toFixed(2)} <br>
+        <strong>Maior Média:</strong> ${dados.maiorMedia.toFixed(2)} <br>
+        <strong>Menor Média:</strong> ${dados.menorMedia.toFixed(2)} 
     `;
 }
 

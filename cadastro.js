@@ -7,7 +7,6 @@ function cadastrar(){
     let opcaoNota = document.querySelector("#opcoes").value;
     let nota1 = Number(document.querySelector("#nota1").value);
     let nota2 = Number(document.querySelector("#nota2").value);
-    let frequencia = Number(document.querySelector("#porcentagem").value);
     let campos = document.querySelectorAll("input, select");
 
     let matricula = gerarMatricula(turma);
@@ -23,8 +22,7 @@ function cadastrar(){
         turma,
         opcaoNota,
         nota1,
-        nota2,
-        frequencia
+        nota2
     };
 
     alunos.push(aluno);
