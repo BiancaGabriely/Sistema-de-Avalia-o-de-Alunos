@@ -15,7 +15,9 @@
         <p>Nesta aba será realizado o cadastro do aluno, insira os dados abaixo:</p>
         <label for="">Nome Completo:</label>
         <input type="text" placeholder="Nome completo..." id="nome">
+        <span id="erroNome" class="erro"></span>
         <br>
+
         <label for="">Turma:</label>
         <select name="" id="turmas">
             <option value="" disabled selected>Informe sua Turma</option>
@@ -26,6 +28,8 @@
             <option value="3M">3° MATUTINO</option>
             <option value="3V">3° VESPERTINO</option>
         </select>
+        <span id="erroTurma" class="erro"></span>
+
         <p id="titulo">Escolha o tipo referente a sua nota:</p>
         <select name="" id="opcoes">
             <option value="" disabled selected>Informe a opção</option>
@@ -39,19 +43,17 @@
             <div>
                 <label for="" >Nota 1:</label>
                 <input type="number" id="nota1">
+                <span id="erroNota1" class="erro"></span>
             </div>
             
             <div>
                 <label for="" >Nota 2:</label>
                 <input type="number" id="nota2">
+                <span id="erroNota2" class="erro"></span>
             </div> 
         </div>
 
-        <p class="titulo">Informe sua frequência na disciplina:</p>
 
-        <label for="porcentagem">Frequência:</label>
-
-        <input type="number" name="" id="porcentagem" min="0" max="100" step="1" placeholder="0%">
         <button id="Enviar" onclick="cadastrar()">Cadastrar</button>
         
         <div id="resultado"></div>

@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg,#e8f1fb 0%,#cfe2f7 100%);
+    min-height: 100vh;
+    color: #1b2a4a;
+}
+
+header{
+    background: #1b2a4a;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.2);
+}
+
+main{
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.consulta{
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+    margin-bottom: 25px;
+}
+
+label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #1b2a4a;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+button{
+    width: 100%;
+    padding: 12px;
+    background: #1b2a4a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: .3s;
+}
+
+button:hover{
+    background: #314b7f;
+}
+
+#filtroSituacao{
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+    margin-bottom: 25px;
+}
+
+#estatisticas,
+#contadores{
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+}
+
+#estatisticas h2,
+#contadores h2{
+    color: #1b2a4a;
+    margin-bottom: 15px;
+}
+
+#estatisticas p,
+#contadores p{
+    margin: 8px 0;
+    font-size: 17px;
+}
+
+#resultado{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 20px;
+}
+
+.aluno{
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+    transition: .3s;
+}
+
+.aluno:hover{
+    transform: translateY(-5px);
+}
+
+.aluno p{
+    margin: 8px 0;
+}
+
+.aluno strong{
+    color: #1b2a4a;
+    font-size: 18px;
+}
+
+
+

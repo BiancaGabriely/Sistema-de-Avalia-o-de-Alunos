@@ -1,28 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="relatorios.css">
+    <title>Relatórios</title>
+
+    <link rel="stylesheet" href="relatorios.css">
 </head>
 <body>
-    <h1>Relatórios</h1>
 
-    <label for="">Informe a turma em que deseja visualizar dados:</label>
+    <header>
+        <h1>Relatórios</h1>
+    </header>
 
-    <select name="" id="turmas">
-        <option value="" disabled selected>Informe sua Turma</option>
-        <option value="">1° MATUTINO</option>
-        <option value="">1° VESPERTINO</option>
-        <option value="">2° MATUTINO</option>
-        <option value="">2° VESPERTINO</option>
-        <option value="">3° MATUTINO</option>
-        <option value="">3° VESPERTINO</option>
+    <main>
 
-    </select>
-    <br>
-    <button onclick="visualizar_dados()">Visualizar dados da Turma</button>
+        <div class="consulta">
 
+            <label for="turmas">
+                Informe a turma que deseja visualizar:
+            </label>
+
+            <select id="turmas">
+
+                <option value="" selected disabled>Selecione a turma</option>
+
+                <option value="1M">1º Matutino</option>
+                <option value="1V">1º Vespertino</option>
+
+                <option value="2M">2º Matutino</option>
+                <option value="2V">2º Vespertino</option>
+
+                <option value="3M">3º Matutino</option>
+                <option value="3V">3º Vespertino</option>
+
+            </select>
+
+            <button onclick="visualizar_dados()">
+                Visualizar Dados
+            </button>
+
+        </div>
+
+        <!-- Filtro -->
+
+        <div id="filtroSituacao" style="display:none;">
+
+            <label for="situacao">
+                Filtrar por situação:
+            </label>
+
+            <select id="situacao" onchange="filtrarSituacao()">
+
+                <option value="Todos">Todos</option>
+
+                <option value="Aprovado">
+                    Aprovados
+                </option>
+
+                <option value="Em Recuperação">
+                    Em Recuperação
+                </option>
+
+                <option value="Reprovado">
+                    Reprovados
+                </option>
+
+            </select>
+
+        </div>
+
+        <section id="estatisticas">
+
+        </section>
+
+        <section id="contadores">
+
+        </section>
+
+        <section id="resultado">
+
+        </section>
+
+    </main>
+
+    <script src="relatorios.js"></script>
 
 </body>
 </html>

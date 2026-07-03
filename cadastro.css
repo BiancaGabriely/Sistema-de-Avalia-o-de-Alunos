@@ -88,6 +88,12 @@ button[type="submit"] {
   box-shadow: 0 6px 16px rgba(31, 95, 168, 0.35);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+.erro{
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
  
 
  

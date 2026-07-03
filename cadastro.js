@@ -10,12 +10,37 @@ function cadastrar(){
     let campos = document.querySelectorAll("input, select");
 
     let matricula = gerarMatricula(turma);
+    let valido = true;
+
+    document.querySelector("#erroNome").textContent = "";;
+    document.querySelector("#erroTurma").textContent = "";
+    document.querySelector("#erroNota1").textContent = "";
+    document.querySelector("#erroNota2").textContent = "";
 
     if(nome.trim() === ""){
-        alert("O campo está vazio. Insira um Nome!");
-        return;
-    }; 
+        document.querySelector("#erroNome").textContent = "*Insira o nome.";
+        valido = false;
+    }
+    
+    if(turma === ""){
+        document.querySelector("#erroTurma").textContent = "*Selecione uma turma.";
+        valido = false;
+    }
 
+    if(document.querySelector("#nota1").value === ""){
+        document.querySelector("#erroNota1").textContent = "*Informe a nota 1.";
+        valido = false;
+    }
+
+    if(document.querySelector("#nota2").value === ""){
+        document.querySelector("#erroNota2").textContent = "*Informe a nota 2.";
+        valido = false;
+    }
+
+    if(!valido){
+        return;
+    }
+    
     let aluno = {
         matricula,
         nome,
