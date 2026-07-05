@@ -1,6 +1,8 @@
 
-let alunos =[];
+let alunos =[]; //array de alunos
 function cadastrar(){
+
+    //recebe todos os dados informados
     let nome = document.querySelector("#nome").value;
     let turma = document.querySelector("#turmas").value;
 
@@ -10,13 +12,15 @@ function cadastrar(){
     let campos = document.querySelectorAll("input, select");
 
     let matricula = gerarMatricula(turma);
-    let valido = true;
+    let valido = true; // teste se o dado foi inserido
 
+    //limpa as mensagens de erro 
     document.querySelector("#erroNome").textContent = "";;
     document.querySelector("#erroTurma").textContent = "";
     document.querySelector("#erroNota1").textContent = "";
     document.querySelector("#erroNota2").textContent = "";
 
+    //teste para saber se o dado foi inserido
     if(nome.trim() === ""){
         document.querySelector("#erroNome").textContent = "*Insira o nome.";
         valido = false;
@@ -41,6 +45,7 @@ function cadastrar(){
         return;
     }
     
+    //cria o objeto aluno
     let aluno = {
         matricula,
         nome,
@@ -50,24 +55,27 @@ function cadastrar(){
         nota2
     };
 
+    //adiciona o aluno e retorna a matrícula de acordo com a turma que foi inserido
     alunos.push(aluno);
-    localStorage.setItem("alunos", JSON.stringify(alunos));
+    localStorage.setItem("alunos", JSON.stringify(alunos)); //dados do vetor são salvos na memória do navegador
     alert(`Aluno cadastrado com sucesso!
     Matrícula do aluno cadastrado: ${matricula}` );
 
     console.log(alunos);
-
+    
+    //limpa os campos para novo cadastro
     campos.forEach(campo => {
      campo.value = "";
     });
     
 }
 function gerarMatricula(turma){
-   
+
+    // filtra os alunos de acordo com suas turmas
     let alunosturma = alunos.filter(aluno =>  aluno.turma === turma);
 
     if(alunosturma.length === 0){
-
+        //se a turma ainda não tiver alunos 
         const inicio = {
             "1M": 1000,
             "2M": 2000,
@@ -76,16 +84,17 @@ function gerarMatricula(turma){
             "2V": 5000,
             "3V": 6000  
         };
-
+        //retorna a turma + o incício da turma
         return turma + inicio[turma];
     }
 
+    //Encontra o maior número sequencial de matrícula existente entre os alunos da turma selecionada. 
     let maior = Math.max(
         ...alunosturma.map(aluno =>
             Number(aluno.matricula.replace(turma,""))
         )
     );
 
-    return turma + (maior + 1);
+    return turma + (maior + 1); // retorna a matrícula encontrada somando 1
     
 }

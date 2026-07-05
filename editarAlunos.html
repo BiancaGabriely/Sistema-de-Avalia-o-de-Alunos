@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edição e Situação de Alunos</title>
     <link rel="stylesheet" href="editar.css">
-    <link rel="shortcut icon" href="favicon-16x16.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -23,8 +22,10 @@
         </div>
         
         <div id="formEditar" style="display:none;">
+
             <label for="nome">Nome:</label>
             <input type="text" id="novoNome">
+
             <label for="turma">Turma</label>
             <select name="" id="novaTurma">
                 <option value="" disabled selected>Informe sua Turma</option>
@@ -35,10 +36,13 @@
                 <option value="3M">3° MATUTINO</option>
                 <option value="3V">3° VESPERTINO</option>
             </select>
+
             <label for="nota1">Nota 1:</label>
             <input type="number" id="novaNota1">
+
             <label for="nota2">Nota 2:</label>
             <input type="number" id="novaNota2">
+            
             <button onclick="salvar()">Salvar</button>
         
             <p id="novaMatricula"></p>

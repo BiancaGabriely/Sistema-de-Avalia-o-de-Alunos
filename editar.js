@@ -1,15 +1,18 @@
-
+/*carrega os dados salvos*/
 let alunos = JSON.parse(localStorage.getItem("alunos")) || [];
 alunos.forEach(aluno => atualizar(aluno));
+/*Passa por cada alun que foi encontrado na memória chamando a função atualizar*/
 
 localStorage.setItem("alunos", JSON.stringify(alunos));
+/*Converte a lista de alunos para texto e a salva de volta no navegador.*/
 document.querySelector("#exibir").addEventListener("click", exibir);
-
+/*Encontra um elemento com o ID exibir*/
 
 function exibir(){
     let matricula = document.querySelector("#matricula").value;
 
     let aluno = alunos.find(aluno => aluno.matricula == matricula);
+    //retorna o primeiro elemento do array que for igual a matrícula informada
     console.log(alunos);
 
     if(!aluno){
@@ -17,6 +20,7 @@ function exibir(){
         return;
     }
 
+    //exibe o resultado do aluno que foi informado
     document.querySelector("#resultado").innerHTML = `
     <div class="resultado">
         <p id="titulo"><strong>Situação do aluno</strong></p><br>
@@ -28,11 +32,12 @@ function exibir(){
 
     `;
 
-    mostrarEstatisticas(aluno.turma);
+    mostrarEstatisticas(aluno.turma); // chama a função mostrar estatísticas
 
     document.querySelector("#botoes").innerHTML = `
-        <button onclick="editar()">Editar</button>
+        <button onclick="editar()">Editar</button> 
     `;
+    // cria o botão editar só após o click de envio e se o aluno for encontrado.
     console.log(aluno);
 
 }
@@ -45,8 +50,10 @@ function editar(){
     if (!aluno) {
         alert("Aluno não encontrado!");
         return;
-    }
+    } // testa se o aluno está na lista
 
+    //Exibe o formulário de edição na tela e preenche automaticamente 
+    //seus campos com os dados atuais do aluno selecionado.
     document.querySelector("#formEditar").style.display = "block";
     document.querySelector("#novoNome").value = aluno.nome;
     document.querySelector("#novaTurma").value = aluno.turma;
@@ -65,36 +72,39 @@ function salvar(){
         return;
     }
 
-    let novaTurma = document.querySelector("#novaTurma").value;
+    let novaTurma = document.querySelector("#novaTurma").value; // recebe a nova turma 
 
     if(novaTurma !== aluno.turma){
+        // se a nova forma for diferente da turma que o aluno estava ele gera uma nova matrícula
         let novamatricula = gerarMatricula(novaTurma);
-
+        //o objeto aluno recebe a nova matrícula
         aluno.matricula = novamatricula;
 
        document.querySelector("#novaMatricula").textContent =
         `Nova matrícula: ${novamatricula}`; 
+        //é exibido a nova matrícula
     }
 
     aluno.nome = document.querySelector("#novoNome").value;
     aluno.turma = novaTurma;
     aluno.nota1 = Number(document.querySelector("#novaNota1").value);
     aluno.nota2 = Number(document.querySelector("#novaNota2").value);
+    //são salvos os novos dados do alunos, os dados que foram editados.
 
     atualizar(aluno);
     mostrarEstatisticas(aluno.turma);
     localStorage.setItem("alunos", JSON.stringify(alunos));
-
-    exibir();
+    //salva os novos dados
+    exibir(); //exibe os novos dados
     alert("Dados salvos com sucesso!");
 
 }
 function gerarMatricula(turma){
    
   let alunosturma = alunos.filter(aluno =>  aluno.turma === turma);
-
+    // filtra os alunos de acordo com suas turmas
     if(alunosturma.length === 0){
-
+          //se a turma ainda não tiver alunos 
         const inicio = {
             "1M": 1000,
             "2M": 2000,
@@ -106,7 +116,8 @@ function gerarMatricula(turma){
 
         return turma + inicio[turma];
     }
-
+     //Encontra o maior número sequencial de matrícula existente entre os 
+     // alunos da turma selecionada. 
     let maior = Math.max(
         ...alunosturma.map(aluno =>
             Number(aluno.matricula.replace(turma,""))
@@ -117,6 +128,7 @@ function gerarMatricula(turma){
     
 }
 function atualizar(aluno){
+    //faz a media do aluno e informa se ele está aprovado, reprovado ou de recuperação
     aluno.media = (aluno.nota1 + aluno.nota2) / 2;
     
     //calcula a situação
@@ -132,12 +144,15 @@ function atualizar(aluno){
 function estatisticas(turma){
     let alunosturma = alunos.filter(aluno => aluno.turma === turma);
 
+    //testa se tem alunos na turma
     if(alunosturma.length === 0){
         return null;
     }
 
+    //cria uma lista contendo apenas as medias dos alunos
     let medias = alunosturma.map(aluno => aluno.media);
-
+    //Passa por essa lista de notas e vai somando uma por uma dentro 
+    // da variável total (que começa em 0), acumulando o valor final.
     let soma = medias.reduce((total, media) => total + media, 0);
 
     return{
@@ -152,7 +167,7 @@ function mostrarEstatisticas(turma){
     if(!dados){
         return;
     }
-
+    //retorna as médias da turma
     document.querySelector("#estatisticas").innerHTML = `
         
         <h3> Estatísticas da Turma </h3>
