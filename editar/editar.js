@@ -5,11 +5,12 @@ let alunos = [];
 async function carregarAlunos() {
     try{
         const resposta = await fetch(API_URL);
-        alunos = await resposta.json();
 
         if(!resposta.ok){
             throw new Error("Erro ao buscar os alunos.");
         }
+        
+        alunos = await resposta.json();
 
         alunos.forEach(aluno => atualizar(aluno));
 
@@ -108,11 +109,31 @@ async function salvar(){
     //são salvos os novos dados do alunos, os dados que foram editados.
 
     atualizar(aluno);
-    mostrarEstatisticas(aluno.turma);
-    localStorage.setItem("alunos", JSON.stringify(alunos));
-    //salva os novos dados
-    exibir(); //exibe os novos dados
-    alert("Dados salvos com sucesso!");
+    try{
+        const resposta = await fetch(`${API_URL}/${aluno.id}`,{
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify(aluno)
+        });
+
+        if(!resposta.ok){
+            throw new Error("Erro ao atualizar o aluno.");
+        }
+
+        const alunoAtualizado = await resposta.json();
+        console.log("Aluno atualizado:", alunoAtualizado);
+
+        let indice = alunos.findIndex(a=> a.id === aluno.id);
+        alunos[indice] = alunoAtualizado;
+        mostrarEstatisticas(aluno.turma);
+        exibir();
+        alert("Dados salvos com sucesso!");
+    } catch(erro){
+        console.error("Erro:", erro);
+        alert("Não foi possível salvar os dados.");
+    }
 
 }
 function gerarMatricula(turma){

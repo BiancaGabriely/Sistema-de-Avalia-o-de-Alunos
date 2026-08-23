@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #e8f1fb 0%, #cfe2f7 100%);
+  min-height: 100vh;
+  color: #1b2a4a;
+}
+
+/* CABEÇALHO */
+h1 {
+  background: #1b2a4a;
+  color: white;
+  padding: 35px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(20, 50, 90, 0.15);
+  font-size: 2rem;
+}
+
+/* CONTEÚDO PRINCIPAL */
+body > div:first-of-type {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px 36px;
+  margin: 40px auto 20px;
+  max-width: 520px;
+  box-shadow: 0 20px 50px rgba(20, 50, 90, 0.15);
+}
+
+label {
+  display: block;
+  color: #1b2a4a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+input {
+  width: 100%;
+  background: #f1f5fb;
+  border: 1px solid #d3e2f5;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  color: #1b2a4a;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+  border-color: #1b2a4a;
+  box-shadow: 0 0 0 3px rgba(27, 42, 74, 0.1);
+}
+
+input::placeholder {
+  color: #9fb3cf;
+}
+
+/* BOTÕES */
+button {
+  background: linear-gradient(180deg, #1b2a4a 0%, #273e6e 100%);
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 6px 16px rgba(31, 95, 168, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(31, 95, 168, 0.4);
+}
+
+#pesquisar {
+  width: 100%;
+}
+
+/* RESULTADO */
+#resultado {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin: 20px auto;
+  max-width: 520px;
+  min-height: 80px;
+  box-shadow: 0 20px 50px rgba(20, 50, 90, 0.15);
+  color: #1b2a4a;
+}
+
+/* BOTÃO DELETAR */
+#deletar {
+  display: block;
+  width: 520px;
+  max-width: calc(100% - 40px);
+  margin: 20px auto 40px;
+  background: linear-gradient(180deg, #b02a37 0%, #8b1e28 100%);
+  box-shadow: 0 6px 16px rgba(176, 42, 55, 0.3);
+}
+
+#deletar:hover {
+  box-shadow: 0 8px 20px rgba(176, 42, 55, 0.4);
+}
+
+/* MENSAGEM DE ERRO */
+.erro {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+
+  h1 {
+    padding: 25px 15px;
+    font-size: 1.6rem;
+  }
+
+  body > div:first-of-type {
+    margin: 25px 20px 15px;
+    padding: 25px 20px;
+  }
+
+  #resultado {
+    margin: 15px 20px;
+    padding: 25px 20px;
+  }
+
+  #deletar {
+    width: calc(100% - 40px);
+  }
+}

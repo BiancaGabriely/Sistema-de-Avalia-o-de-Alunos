@@ -12,18 +12,6 @@ async function cadastrar() {
 
     let campos = document.querySelectorAll("input, select");
 
-    // Busca os alunos cadastrados na MockAPI
-    const respostaAlunos = await fetch(API_URL);
-
-    if (!respostaAlunos.ok) {
-        throw new Error("Erro ao buscar os alunos.");
-    }
-
-    const alunos = await respostaAlunos.json();
-
-    // Gera a matrícula
-    let matricula = gerarMatricula(turma, alunos);
-
     let valido = true;
 
     // Limpa as mensagens de erro
@@ -63,7 +51,6 @@ async function cadastrar() {
 
     // Cria o objeto aluno
     let aluno = {
-        matricula,
         nome,
         turma,
         opcaoNota,
@@ -91,7 +78,8 @@ async function cadastrar() {
         const alunoCadastrado = await resposta.json();
 
         console.log("Aluno cadastrado no MockAPI:", alunoCadastrado);
-
+        //id=matricula
+        const matricula = alunoCadastrado.id;
         alert(
             `Aluno cadastrado com sucesso! Matrícula do aluno cadastrado: ${matricula}`
         );
@@ -110,39 +98,3 @@ async function cadastrar() {
 }
 
 
-// Função responsável por gerar a matrícula
-function gerarMatricula(turma, alunos) {
-
-    // Filtra os alunos de acordo com a turma
-    let alunosTurma = alunos.filter(
-        aluno => aluno.turma === turma
-    );
-
-    // Se a turma ainda não tiver alunos
-    if (alunosTurma.length === 0) {
-
-        const inicio = {
-            "1M": 1000,
-            "2M": 2000,
-            "3M": 3000,
-            "1V": 4000,
-            "2V": 5000,
-            "3V": 6000
-        };
-
-        // Retorna a turma + início da sequência
-        return turma + inicio[turma];
-    }
-
-    // Encontra a maior matrícula existente na turma
-    let maior = Math.max(
-        ...alunosTurma.map(aluno =>
-            Number(
-                aluno.matricula.replace(turma, "")
-            )
-        )
-    );
-
-    // Retorna a próxima matrícula
-    return turma + (maior + 1);
-}

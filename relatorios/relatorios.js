@@ -4,7 +4,10 @@ let alunos = [];
 
 async function carregarAlunos() {
     try{
-        const resposta = await fetch(API_URL);
+        const resposta = await fetch(API_URL,{
+            method: "GET"
+        });
+           
         alunos = await resposta.json();
 
         if(!resposta.ok){
