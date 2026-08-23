@@ -4,12 +4,16 @@ let alunos = [];
 
 async function carregarAlunos() {
     try{
-        const resposta = await fetch(API_URL);
+        const resposta = await fetch(API_URL,{
+            method: "GET"
+        });
+           
+        
 
         if(!resposta.ok){
             throw new Error("Erro ao buscar os alunos.");
         }
-        
+
         alunos = await resposta.json();
 
         alunos.forEach(aluno => atualizar(aluno));
@@ -29,7 +33,7 @@ document.querySelector("#exibir").addEventListener("click", exibir);
 function exibir(){
     let matricula = document.querySelector("#matricula").value;
 
-    let aluno = alunos.find(aluno => aluno.matricula == matricula);
+    let aluno = alunos.find(aluno => aluno.id == matricula);
     //retorna o primeiro elemento do array que for igual a matrícula informada
     console.log(alunos);
 
@@ -62,7 +66,7 @@ function editar(){
 
     let matricula = document.querySelector("#matricula").value;
 
-    let aluno = alunos.find(aluno => aluno.matricula == matricula);
+    let aluno = alunos.find(aluno => aluno.id == matricula);
 
     if (!aluno) {
         alert("Aluno não encontrado!");
@@ -78,91 +82,76 @@ function editar(){
     document.querySelector("#novaNota2").value = aluno.nota2;
 
 }
-async function salvar(){
-    
+
+async function salvar() {
+
     let matricula = document.querySelector("#matricula").value;
 
-    let aluno = alunos.find(aluno => aluno.matricula == matricula);
+    // Procura o aluno pelo ID do MockAPI
+    let aluno = alunos.find(aluno => aluno.id == matricula);
 
     if (!aluno) {
         alert("Aluno não encontrado!");
         return;
     }
 
-    let novaTurma = document.querySelector("#novaTurma").value; // recebe a nova turma 
+    // A matrícula permanece a mesma
+    const id = aluno.id;
 
-    if(novaTurma !== aluno.turma){
-        // se a nova forma for diferente da turma que o aluno estava ele gera uma nova matrícula
-        let novamatricula = gerarMatricula(novaTurma);
-        //o objeto aluno recebe a nova matrícula
-        aluno.matricula = novamatricula;
+    // Novos dados
+    const dadosAtualizados = {
+        nome: document.querySelector("#novoNome").value,
+        turma: document.querySelector("#novaTurma").value,
+        nota1: Number(document.querySelector("#novaNota1").value),
+        nota2: Number(document.querySelector("#novaNota2").value),
+        opcaoNota: aluno.opcaoNota
+    };
 
-       document.querySelector("#novaMatricula").textContent =
-        `Nova matrícula: ${novamatricula}`; 
-        //é exibido a nova matrícula
-    }
+    try {
 
-    aluno.nome = document.querySelector("#novoNome").value;
-    aluno.turma = novaTurma;
-    aluno.nota1 = Number(document.querySelector("#novaNota1").value);
-    aluno.nota2 = Number(document.querySelector("#novaNota2").value);
-    //são salvos os novos dados do alunos, os dados que foram editados.
-
-    atualizar(aluno);
-    try{
-        const resposta = await fetch(`${API_URL}/${aluno.id}`,{
+        const resposta = await fetch(`${API_URL}/${id}`, {
             method: "PUT",
+
             headers: {
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify(aluno)
+
+            body: JSON.stringify(dadosAtualizados)
         });
 
-        if(!resposta.ok){
+        if (!resposta.ok) {
             throw new Error("Erro ao atualizar o aluno.");
         }
 
         const alunoAtualizado = await resposta.json();
+
         console.log("Aluno atualizado:", alunoAtualizado);
 
-        let indice = alunos.findIndex(a=> a.id === aluno.id);
+        // Recalcula média e situação
+        atualizar(alunoAtualizado);
+
+        // Atualiza o aluno dentro do array
+        const indice = alunos.findIndex(a => a.id == id);
+
         alunos[indice] = alunoAtualizado;
-        mostrarEstatisticas(aluno.turma);
+
+        // Mostra estatísticas da nova turma
+        mostrarEstatisticas(alunoAtualizado.turma);
+
+        // Mostra novamente os dados
         exibir();
+
+        // Esconde formulário de edição
+        document.querySelector("#formEditar").style.display = "none";
+
         alert("Dados salvos com sucesso!");
-    } catch(erro){
+
+    } catch (erro) {
+
         console.error("Erro:", erro);
+
         alert("Não foi possível salvar os dados.");
     }
-
-}
-function gerarMatricula(turma){
-   
-  let alunosturma = alunos.filter(aluno =>  aluno.turma === turma);
-    // filtra os alunos de acordo com suas turmas
-    if(alunosturma.length === 0){
-          //se a turma ainda não tiver alunos 
-        const inicio = {
-            "1M": 1000,
-            "2M": 2000,
-            "3M": 3000,
-            "1V": 4000,
-            "2V": 5000,
-            "3V": 6000  
-        };
-
-        return turma + inicio[turma];
-    }
-     //Encontra o maior número sequencial de matrícula existente entre os 
-     // alunos da turma selecionada. 
-    let maior = Math.max(
-        ...alunosturma.map(aluno =>
-            Number(aluno.matricula.replace(turma,""))
-        )
-    );
-
-    return turma + (maior + 1);
-    
 }
 function atualizar(aluno){
     //faz a media do aluno e informa se ele está aprovado, reprovado ou de recuperação
@@ -214,4 +203,4 @@ function mostrarEstatisticas(turma){
         <strong>Menor Média:</strong> ${dados.menorMedia.toFixed(2)} 
     `;
 }
-
+carregarAlunos();
