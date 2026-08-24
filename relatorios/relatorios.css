@@ -1,126 +1,423 @@
-*{
+/* ========================================
+   CONFIGURAÇÕES GERAIS
+======================================== */
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
-    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg,#e8f1fb 0%,#cfe2f7 100%);
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f8;
+    color: #444;
     min-height: 100vh;
-    color: #1b2a4a;
 }
 
-header{
-    background: #1b2a4a;
+
+/* ========================================
+   CABEÇALHO
+======================================== */
+
+header {
+    height: 70px;
+
+    background: #35aaa0;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 45px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+header h1 {
     color: white;
-    text-align: center;
-    padding: 25px;
-    box-shadow: 0 3px 10px rgba(0,0,0,.2);
+
+    font-size: 24px;
+    font-weight: 500;
 }
 
-main{
+
+/* ========================================
+   ÁREA PRINCIPAL
+======================================== */
+
+main {
     width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
+    max-width: 950px;
+
+    margin: 40px auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
 }
 
-.consulta{
+
+/* ========================================
+   CARD DE CONSULTA
+======================================== */
+
+.consulta {
     background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.15);
-    margin-bottom: 25px;
+
+    padding: 30px 40px;
+
+    border-radius: 6px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
 }
 
-label{
+
+/* ========================================
+   LABELS
+======================================== */
+
+label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
+
+    margin-bottom: 8px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    font-weight: 500;
 }
 
-select{
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #1b2a4a;
-    margin-bottom: 20px;
-    font-size: 16px;
-}
 
-button{
+/* ========================================
+   SELECT
+======================================== */
+
+select {
     width: 100%;
-    padding: 12px;
-    background: #1b2a4a;
-    color: white;
-    border: none;
-    border-radius: 8px;
+
+    height: 42px;
+
+    padding: 10px 12px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #d8dfe1;
+
+    border-radius: 4px;
+
+    background: white;
+
+    color: #555;
+
+    font-size: 14px;
+
+    outline: none;
+
     cursor: pointer;
-    font-size: 16px;
-    transition: .3s;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-button:hover{
-    background: #314b7f;
+select:focus {
+    border-color: #35aaa0;
+
+    box-shadow: 0 0 0 2px rgba(53, 170, 160, 0.12);
 }
 
-#filtroSituacao{
+
+/* ========================================
+   BOTÃO VISUALIZAR
+======================================== */
+
+.consulta button {
+    padding: 11px 25px;
+
+    border: none;
+
+    border-radius: 4px;
+
+    background: #35aaa0;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: background 0.2s, transform 0.2s;
+}
+
+.consulta button:hover {
+    background: #2d9189;
+
+    transform: translateY(-1px);
+}
+
+.consulta button:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   FILTRO
+======================================== */
+
+#filtroSituacao {
     background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.15);
-    margin-bottom: 25px;
+
+    padding: 25px 40px;
+
+    border-radius: 6px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
 }
 
-#estatisticas,
-#contadores{
+#filtroSituacao select {
+    margin-bottom: 0;
+}
+
+
+/* ========================================
+   ESTATÍSTICAS
+======================================== */
+
+#estatisticas {
     background: white;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 25px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+
+    padding: 30px 40px;
+
+    border-radius: 6px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+    line-height: 2;
 }
 
 #estatisticas h2,
-#contadores h2{
-    color: #1b2a4a;
+#estatisticas h3 {
+    color: #2f7774;
+
     margin-bottom: 15px;
+
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid #e3e8e9;
 }
 
-#estatisticas p,
-#contadores p{
-    margin: 8px 0;
-    font-size: 17px;
-}
 
-#resultado{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); /* Cria uma grade responsiva
-     automática que espreme ou espalha os elementos, garantindo que cada um tenha no mínimo 
-     280px e no máximo 1 fração do espaço disponível, sem quebrar o layout. */
-    gap: 20px;/*espaçamento*/
-}
+/* ========================================
+   CONTADORES
+   UM ABAIXO DO OUTRO
+======================================== */
 
-.aluno{
+#contadores {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
     background: white;
+
+    padding: 25px 40px;
+
+    border-radius: 6px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Cada contador */
+
+#contadores > div {
+    background: transparent;
+
+    padding: 5px 0;
+
+    border: none;
+
+    box-shadow: none;
+
+    text-align: left;
+}
+
+
+/* Texto dos contadores */
+
+#contadores h3 {
+    display: inline;
+
+    color: #2f7774;
+
+    font-size: 26px;
+
+    font-weight: 600;
+
+    margin: 0;
+}
+
+#contadores strong {
+    color: #2f7774;
+
+    font-size: 26px;
+}
+
+
+/* ========================================
+   RESULTADO
+======================================== */
+
+#resultado {
+    background: white;
+
+    padding: 30px 40px;
+
+    border-radius: 6px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ========================================
+   CARDS DOS ALUNOS
+======================================== */
+
+#resultado .aluno,
+#resultado .resultado {
+    background: #f7fafb;
+
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.15);
-    transition: .3s;
+
+    margin-bottom: 15px;
+
+    border-left: 4px solid #35aaa0;
+
+    border-radius: 4px;
+
+    line-height: 1.8;
 }
 
-.aluno:hover{
-    transform: translateY(-5px);
-}
-
-.aluno p{
-    margin: 8px 0;
-}
-
-.aluno strong{
-    color: #1b2a4a;
-    font-size: 18px;
+#resultado .aluno:last-child,
+#resultado .resultado:last-child {
+    margin-bottom: 0;
 }
 
 
+/* Nome do aluno */
 
+#resultado h3 {
+    color: #2f7774;
+
+    margin-bottom: 8px;
+}
+
+
+/* ========================================
+   SITUAÇÕES
+======================================== */
+
+.aprovado {
+    color: #2f8f83;
+
+    font-weight: 600;
+}
+
+.recuperacao {
+    color: #d19a32;
+
+    font-weight: 600;
+}
+
+.reprovado {
+    color: #d95353;
+
+    font-weight: 600;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 768px) {
+
+    header {
+        height: 65px;
+
+        padding: 0 25px;
+    }
+
+    header h1 {
+        font-size: 21px;
+    }
+
+    main {
+        width: 92%;
+
+        margin: 25px auto;
+    }
+
+    .consulta,
+    #filtroSituacao,
+    #estatisticas,
+    #contadores,
+    #resultado {
+        padding: 25px 30px;
+    }
+}
+
+
+/* ========================================
+   CELULARES
+======================================== */
+
+@media (max-width: 500px) {
+
+    header {
+        padding: 0 18px;
+    }
+
+    header h1 {
+        font-size: 19px;
+    }
+
+    main {
+        width: 94%;
+
+        margin: 18px auto;
+
+        gap: 15px;
+    }
+
+    .consulta,
+    #filtroSituacao,
+    #estatisticas,
+    #contadores,
+    #resultado {
+        padding: 22px 18px;
+    }
+
+    .consulta button {
+        width: 100%;
+    }
+
+    #contadores {
+        gap: 5px;
+    }
+
+    #contadores h3,
+    #contadores strong {
+        font-size: 22px;
+    }
+
+    #resultado .aluno,
+    #resultado .resultado {
+        padding: 16px;
+
+        font-size: 14px;
+    }
+}

@@ -49,19 +49,46 @@ async function cadastrar() {
         return;
     }
 
-    // Cria o objeto aluno
-    let aluno = {
-        nome,
-        turma,
-        opcaoNota,
-        nota1,
-        nota2
-    };
-
     try {
+
+        // Busca os alunos já cadastrados
+        const respostaAlunos = await fetch(API_URL);
+
+        if (!respostaAlunos.ok) {
+            throw new Error("Erro ao buscar os alunos.");
+        }
+
+        const alunos = await respostaAlunos.json();
+
+        // Encontra a maior matrícula existente
+        let maiorMatricula = 0;
+
+        alunos.forEach(aluno => {
+
+            let matriculaAtual = Number(aluno.matricula);
+
+            if (matriculaAtual > maiorMatricula) {
+                maiorMatricula = matriculaAtual;
+            }
+
+        });
+
+        // Cria a próxima matrícula
+        let matricula = maiorMatricula + 1;
+
+        // Cria o objeto aluno
+        let aluno = {
+            nome,
+            turma,
+            opcaoNota,
+            nota1,
+            nota2,
+            matricula: String(matricula)
+        };
 
         // Cadastra o aluno na MockAPI
         const resposta = await fetch(API_URL, {
+
             method: "POST",
 
             headers: {
@@ -69,6 +96,7 @@ async function cadastrar() {
             },
 
             body: JSON.stringify(aluno)
+
         });
 
         if (!resposta.ok) {
@@ -78,10 +106,9 @@ async function cadastrar() {
         const alunoCadastrado = await resposta.json();
 
         console.log("Aluno cadastrado no MockAPI:", alunoCadastrado);
-        //id=matricula
-        const matricula = alunoCadastrado.id;
+
         alert(
-            `Aluno cadastrado com sucesso! Matrícula do aluno cadastrado: ${matricula}`
+            `Aluno cadastrado com sucesso! Matrícula do aluno cadastrado: ${alunoCadastrado.matricula}`
         );
 
         // Limpa os campos
@@ -96,5 +123,3 @@ async function cadastrar() {
         alert("Não foi possível cadastrar o aluno.");
     }
 }
-
-

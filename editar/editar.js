@@ -7,8 +7,6 @@ async function carregarAlunos() {
         const resposta = await fetch(API_URL,{
             method: "GET"
         });
-           
-        
 
         if(!resposta.ok){
             throw new Error("Erro ao buscar os alunos.");
@@ -24,7 +22,7 @@ async function carregarAlunos() {
 
         document.querySelector("#resultado").innerHTML = "<p>Não foi possível carregar os alunos.</p>";
     }
-    
+
 }
 
 document.querySelector("#exibir").addEventListener("click", exibir);
@@ -33,7 +31,7 @@ document.querySelector("#exibir").addEventListener("click", exibir);
 function exibir(){
     let matricula = document.querySelector("#matricula").value;
 
-    let aluno = alunos.find(aluno => aluno.id == matricula);
+    let aluno = alunos.find(aluno => aluno.matricula == matricula);
     //retorna o primeiro elemento do array que for igual a matrícula informada
     console.log(alunos);
 
@@ -66,7 +64,7 @@ function editar(){
 
     let matricula = document.querySelector("#matricula").value;
 
-    let aluno = alunos.find(aluno => aluno.id == matricula);
+    let aluno = alunos.find(aluno => aluno.matricula == matricula);
 
     if (!aluno) {
         alert("Aluno não encontrado!");
@@ -87,24 +85,33 @@ async function salvar() {
 
     let matricula = document.querySelector("#matricula").value;
 
-    // Procura o aluno pelo ID do MockAPI
-    let aluno = alunos.find(aluno => aluno.id == matricula);
+    // Encontra o aluno pela matrícula
+    let aluno = alunos.find(aluno => aluno.matricula == matricula);
 
     if (!aluno) {
         alert("Aluno não encontrado!");
         return;
     }
 
-    // A matrícula permanece a mesma
-    const id = aluno.id;
+    console.log("Aluno encontrado:", aluno);
 
-    // Novos dados
+    // ID REAL do registro na MockAPI
+    const id = aluno.matricula;
+    console.log("ID da MockAPI:", id);
+
+    if (!id) {
+        alert("Erro: o ID do aluno não foi encontrado.");
+        return;
+    }
+
+    // Pega os dados que foram editados
     const dadosAtualizados = {
         nome: document.querySelector("#novoNome").value,
         turma: document.querySelector("#novaTurma").value,
         nota1: Number(document.querySelector("#novaNota1").value),
         nota2: Number(document.querySelector("#novaNota2").value),
-        opcaoNota: aluno.opcaoNota
+        opcaoNota: aluno.opcaoNota,
+        matricula: aluno.matricula
     };
 
     try {
@@ -130,18 +137,20 @@ async function salvar() {
         // Recalcula média e situação
         atualizar(alunoAtualizado);
 
-        // Atualiza o aluno dentro do array
+        // Atualiza o aluno no array
         const indice = alunos.findIndex(a => a.id == id);
 
-        alunos[indice] = alunoAtualizado;
+        if (indice !== -1) {
+            alunos[indice] = alunoAtualizado;
+        }
 
-        // Mostra estatísticas da nova turma
+        // Atualiza estatísticas
         mostrarEstatisticas(alunoAtualizado.turma);
 
-        // Mostra novamente os dados
+        // Atualiza a tela
         exibir();
 
-        // Esconde formulário de edição
+        // Esconde formulário
         document.querySelector("#formEditar").style.display = "none";
 
         alert("Dados salvos com sucesso!");
@@ -156,7 +165,7 @@ async function salvar() {
 function atualizar(aluno){
     //faz a media do aluno e informa se ele está aprovado, reprovado ou de recuperação
     aluno.media = (aluno.nota1 + aluno.nota2) / 2;
-    
+
     //calcula a situação
     console.log(alunos);
     if(aluno.media >= 60 ){
@@ -195,7 +204,7 @@ function mostrarEstatisticas(turma){
     }
     //retorna as médias da turma
     document.querySelector("#estatisticas").innerHTML = `
-        
+
         <h3> Estatísticas da Turma </h3>
 
         <strong>Média da Turma:</strong> ${dados.mediaTurma.toFixed(2)} <br>

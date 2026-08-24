@@ -1,143 +1,300 @@
+/* ========================================
+   CONFIGURAÇÕES GERAIS
+======================================== */
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg, #e8f1fb 0%, #cfe2f7 100%);
-  min-height: 100vh;
-  color: #1b2a4a;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f4f7f8;
+
+    color: #444;
+
+    min-height: 100vh;
 }
 
-/* CABEÇALHO */
+
+/* ========================================
+   CABEÇALHO
+======================================== */
+
 h1 {
-  background: #1b2a4a;
-  color: white;
-  padding: 35px;
-  text-align: center;
-  box-shadow: 0 20px 50px rgba(20, 50, 90, 0.15);
-  font-size: 2rem;
+    height: 70px;
+
+    margin: 0;
+
+    padding: 0 45px;
+
+    display: flex;
+    align-items: center;
+
+    background: #35aaa0;
+
+    color: white;
+
+    font-size: 24px;
+
+    font-weight: 500;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* CONTEÚDO PRINCIPAL */
+
+/* ========================================
+   CARD PRINCIPAL
+======================================== */
+
 body > div:first-of-type {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 32px 36px;
-  margin: 40px auto 20px;
-  max-width: 520px;
-  box-shadow: 0 20px 50px rgba(20, 50, 90, 0.15);
+    width: 90%;
+
+    max-width: 850px;
+
+    margin: 40px auto 25px;
+
+    padding: 30px 40px;
+
+    background: white;
+
+    border-radius: 6px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
 }
+
+
+/* ========================================
+   LABEL
+======================================== */
 
 label {
-  display: block;
-  color: #1b2a4a;
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 8px;
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    font-weight: 500;
 }
 
-input[type="text"],
+
+/* ========================================
+   INPUT
+======================================== */
+
 input {
-  width: 100%;
-  background: #f1f5fb;
-  border: 1px solid #d3e2f5;
-  border-radius: 10px;
-  padding: 12px 14px;
-  font-size: 0.9rem;
-  color: #1b2a4a;
-  outline: none;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+
+    height: 42px;
+
+    padding: 10px 12px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #d8dfe1;
+
+    border-radius: 4px;
+
+    background: white;
+
+    color: #555;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 input:focus {
-  border-color: #1b2a4a;
-  box-shadow: 0 0 0 3px rgba(27, 42, 74, 0.1);
+    border-color: #35aaa0;
+
+    box-shadow: 0 0 0 2px rgba(53, 170, 160, 0.12);
 }
 
-input::placeholder {
-  color: #9fb3cf;
-}
 
-/* BOTÕES */
-button {
-  background: linear-gradient(180deg, #1b2a4a 0%, #273e6e 100%);
-  color: #ffffff;
-  border: none;
-  padding: 12px 24px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 20px;
-  box-shadow: 0 6px 16px rgba(31, 95, 168, 0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(31, 95, 168, 0.4);
-}
+/* ========================================
+   BOTÃO PESQUISAR
+======================================== */
 
 #pesquisar {
-  width: 100%;
+    padding: 11px 28px;
+
+    border: none;
+
+    border-radius: 4px;
+
+    background: #35aaa0;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: background 0.2s, transform 0.2s;
 }
 
-/* RESULTADO */
+#pesquisar:hover {
+    background: #2d9189;
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   RESULTADO
+======================================== */
+
 #resultado {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 28px 32px;
-  margin: 20px auto;
-  max-width: 520px;
-  min-height: 80px;
-  box-shadow: 0 20px 50px rgba(20, 50, 90, 0.15);
-  color: #1b2a4a;
+    width: 90%;
+
+    max-width: 850px;
+
+    margin: 0 auto 25px;
+
+    padding: 30px 40px;
+
+    background: white;
+
+    border-radius: 6px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+    line-height: 1.9;
 }
 
-/* BOTÃO DELETAR */
+
+/* ========================================
+   CARD DO ALUNO
+======================================== */
+
+.resultado {
+    padding: 22px;
+
+    background: #f7fafb;
+
+    border-left: 4px solid #35aaa0;
+
+    border-radius: 4px;
+}
+
+.resultado h2,
+.resultado h3 {
+    color: #2f7774;
+
+    margin-bottom: 15px;
+}
+
+
+/* ========================================
+   BOTÃO DELETAR
+======================================== */
+
 #deletar {
-  display: block;
-  width: 520px;
-  max-width: calc(100% - 40px);
-  margin: 20px auto 40px;
-  background: linear-gradient(180deg, #b02a37 0%, #8b1e28 100%);
-  box-shadow: 0 6px 16px rgba(176, 42, 55, 0.3);
+    display: block;
+
+    width: 90%;
+
+    max-width: 850px;
+
+    margin: 0 auto 40px;
+
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 4px;
+
+    background: #e05252;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: background 0.2s, transform 0.2s;
 }
 
 #deletar:hover {
-  box-shadow: 0 8px 20px rgba(176, 42, 55, 0.4);
+    background: #c63f3f;
+
+    transform: translateY(-1px);
 }
 
-/* MENSAGEM DE ERRO */
-.erro {
-  color: red;
-  font-size: 12px;
-  display: block;
-  margin-top: 5px;
+#deletar:active {
+    transform: translateY(0);
 }
 
-/* RESPONSIVIDADE */
-@media (max-width: 600px) {
 
-  h1 {
-    padding: 25px 15px;
-    font-size: 1.6rem;
-  }
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
 
-  body > div:first-of-type {
-    margin: 25px 20px 15px;
-    padding: 25px 20px;
-  }
+@media (max-width: 768px) {
 
-  #resultado {
-    margin: 15px 20px;
-    padding: 25px 20px;
-  }
+    h1 {
+        height: 65px;
 
-  #deletar {
-    width: calc(100% - 40px);
-  }
+        padding: 0 25px;
+
+        font-size: 21px;
+    }
+
+    body > div:first-of-type,
+    #resultado,
+    #deletar {
+        width: 92%;
+    }
+
+    body > div:first-of-type,
+    #resultado {
+        padding: 25px 30px;
+    }
+}
+
+
+/* ========================================
+   CELULARES
+======================================== */
+
+@media (max-width: 500px) {
+
+    h1 {
+        padding: 0 18px;
+
+        font-size: 19px;
+    }
+
+    body > div:first-of-type,
+    #resultado {
+        width: 94%;
+
+        padding: 22px 18px;
+    }
+
+    #pesquisar,
+    #deletar {
+        width: 100%;
+    }
+
+    #deletar {
+        width: 94%;
+    }
+
+    .resultado {
+        padding: 18px;
+
+        font-size: 14px;
+    }
 }

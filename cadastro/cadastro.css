@@ -1,102 +1,313 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body{
-  font-family: 'Sege UI', Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg, #e8f1fb 0%, #cfe2f7 100%);
-  min-height: 100vh;
-  color:#1b2a4a;
-    
-}
-header{
-  background: #1b2a4a;
-  color: white;
-  padding: 40px;
-  text-align: center;
-  box-shadow: 0 20px 50px rgba(20, 50, 90, 0.15);
-}
-p{
-  color:#1b2a4a; 
-  font-size: 1rem;
-  margin: 16px 0 24px;
+/* ========================================
+   CONFIGURAÇÕES GERAIS
+======================================== */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-main{
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 32px 36px;
-  margin: 40px auto;
-  max-width: 520px;
-  box-shadow: 0 20px 50px rgba(20, 50, 90, 0.15);
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f8;
+    color: #444;
+    min-height: 100vh;
 }
-.linha{
-  display: flex;
-  gap: 20px; /*espaçamento*/
+
+
+/* ========================================
+   CABEÇALHO
+======================================== */
+
+header {
+    height: 70px;
+
+    background: #35aaa0;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 45px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
+
+header h1 {
+    color: white;
+
+    font-size: 24px;
+    font-weight: 500;
+}
+
+
+/* ========================================
+   ÁREA PRINCIPAL
+======================================== */
+
+main {
+    width: 90%;
+    max-width: 850px;
+
+    margin: 40px auto;
+
+    background: white;
+
+    padding: 35px 45px;
+
+    border-radius: 6px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ========================================
+   TEXTO INICIAL
+======================================== */
+
+main > p:first-child {
+    color: #777;
+
+    font-size: 15px;
+
+    margin-bottom: 30px;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   LABELS
+======================================== */
+
 label {
-  display: block;
-  color: #1b2a4a;
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 6px;
-  margin-top: 18px;
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    font-weight: 500;
 }
-label:first-of-type { /*seleciona o primeiro elemento*/
-  margin-top: 0;
-}
-input[type="text"],
-input[type="number"],
+
+
+/* ========================================
+   CAMPOS
+======================================== */
+
 input,
 select {
-  width: 100%;
-  background: #f1f5fb;
-  border: 1px solid #d3e2f5;
-  border-radius: 10px;
-  padding: 10px 14px;
-  font-size: 0.9rem;
-  color: #1b2a4a;
-  outline: none; /*linha ao redor do elemento*/
-  transition: border 0.2s ease, box-shadow 0.2s ease;
-}
-input::placeholder {
-  color: #9fb3cf;
-}
-input::placeholder {
-  color: #9fb3cf;
-}
-select {
-  cursor: pointer;
-  appearance: none; /*remove o visual padrão do navegador*/
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%231f5fa8' stroke-width='2' fill='none'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  /*Estiliza o fundo inserindo uma seta personalizada via SVG (código direto no CSS), 
-  garante que ela não se repita e a posiciona alinhada ao centro verticalmente 
-  e a 14px de distância da borda direita (muito comum para customizar a seta de campos <select>)*/
-  padding-right: 36px;
-}
-button,
-button[type="submit"] {
-  background: linear-gradient(180deg, #1b2a4a 0%, #273e6e 100%);
-  color: #ffffff;
-  border: none;
-  padding: 12px 28px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 28px;
-  box-shadow: 0 6px 16px rgba(31, 95, 168, 0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-.erro{
-  color: red;
-  font-size: 12px;
-  display: block;
-  margin-top: 5px;
-}
- 
+    width: 100%;
 
- 
+    height: 42px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #d8dfe1;
+
+    border-radius: 4px;
+
+    background: #fff;
+
+    color: #555;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+input:focus,
+select:focus {
+    border-color: #35aaa0;
+
+    box-shadow: 0 0 0 2px rgba(53, 170, 160, 0.12);
+}
+
+
+/* ========================================
+   ESPAÇAMENTO ENTRE CAMPOS
+======================================== */
+
+main > label,
+main > input,
+main > select {
+    margin-bottom: 8px;
+}
+
+main > br {
+    display: none;
+}
+
+
+/* ========================================
+   TÍTULO DAS NOTAS
+======================================== */
+
+#titulo {
+    margin-top: 25px;
+    margin-bottom: 8px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+/* ========================================
+   LINHA DAS NOTAS
+======================================== */
+
+.linha {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+
+    margin-top: 25px;
+}
+
+.linha > div {
+    width: 100%;
+}
+
+
+/* ========================================
+   MENSAGENS DE ERRO
+======================================== */
+
+.erro {
+    display: block;
+
+    min-height: 18px;
+
+    margin-top: 4px;
+
+    color: #e05252;
+
+    font-size: 12px;
+}
+
+
+/* ========================================
+   BOTÃO
+======================================== */
+
+#Enviar {
+    margin-top: 25px;
+
+    padding: 12px 30px;
+
+    border: none;
+
+    border-radius: 4px;
+
+    background: #35aaa0;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: background 0.2s, transform 0.2s;
+}
+
+#Enviar:hover {
+    background: #2d9189;
+
+    transform: translateY(-1px);
+}
+
+#Enviar:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   RESULTADO
+======================================== */
+
+#resultado {
+    margin-top: 25px;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 768px) {
+
+    header {
+        height: 65px;
+
+        padding: 0 25px;
+    }
+
+    header h1 {
+        font-size: 21px;
+    }
+
+    main {
+        width: 92%;
+
+        margin: 25px auto;
+
+        padding: 30px;
+    }
+}
+
+
+/* ========================================
+   CELULAR
+======================================== */
+
+@media (max-width: 550px) {
+
+    header {
+        padding: 0 18px;
+    }
+
+    header h1 {
+        font-size: 19px;
+    }
+
+    main {
+        width: 94%;
+
+        margin: 18px auto;
+
+        padding: 25px 20px;
+    }
+
+    main > p:first-child {
+        font-size: 14px;
+
+        margin-bottom: 25px;
+    }
+
+    .linha {
+        grid-template-columns: 1fr;
+
+        gap: 5px;
+
+        margin-top: 20px;
+    }
+
+    #Enviar {
+        width: 100%;
+    }
+}
