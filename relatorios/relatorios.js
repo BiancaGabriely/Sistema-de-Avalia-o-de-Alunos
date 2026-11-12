@@ -1,4 +1,4 @@
-const API_URL= "https://6a86e15170fbbd308f986db1.mockapi.io/Alunos"
+const API_URL= "http://localhost:3000/alunos"
 
 let alunos = [];
 
@@ -157,10 +157,10 @@ function atualizar(aluno){
     // é a função de atualizar a situação do aluno
     aluno.media = (Number(aluno.nota1) + Number(aluno.nota2))/2;
 
-    if(aluno.media >= 60){
+    if(aluno.media >= 6){
         aluno.situacao = "Aprovado";
     }
-    else if(aluno.media >= 50){
+    else if(aluno.media >= 5){
         aluno.situacao = "Em Recuperação";
     }
     else{

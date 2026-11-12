@@ -1,4 +1,4 @@
-const API_URL = "https://6a86e15170fbbd308f986db1.mockapi.io/Alunos";
+const API_URL = "http://localhost:3000/alunos";
 
 async function cadastrar() {
 
@@ -108,7 +108,7 @@ async function cadastrar() {
         console.log("Aluno cadastrado no MockAPI:", alunoCadastrado);
 
         alert(
-            `Aluno cadastrado com sucesso! Matrícula do aluno cadastrado: ${alunoCadastrado.matricula}`
+            `Aluno cadastrado com sucesso! Matrícula do aluno cadastrado: ${alunoCadastrado.novoAluno.matricula}`
         );
 
         // Limpa os campos

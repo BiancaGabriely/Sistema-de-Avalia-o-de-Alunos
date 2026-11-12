@@ -1,4 +1,4 @@
-const API_URL = "https://6a86e15170fbbd308f986db1.mockapi.io/Alunos";
+const API_URL = "http://localhost:3000/alunos";
 
 async function carregarDados(matricula) {
     try {
